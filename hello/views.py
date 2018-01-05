@@ -32,7 +32,6 @@ def anan(request):
 
 
 def db(request):
-
     greeting = Greeting()
     greeting.save()
 

@@ -3,6 +3,7 @@ from django.test import TestCase, RequestFactory
 
 from .views import index
 
+
 class SimpleTest(TestCase):
     def setUp(self):
         # Every test needs access to the request factory.
