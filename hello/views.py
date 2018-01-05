@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 
 from .models import Greeting
+from .models import AnanLib
 
 # import requests
 # import os
@@ -22,6 +23,12 @@ def index(request):
 # def index(request):
 #     times = int(os.environ.get('TIMES', 3))
 #     return HttpResponse('Hello! ' * times)
+
+
+def anan(request):
+    anan = AnanLib()
+
+    return render(request, 'anan.html', {'anan': anan.text})
 
 
 def db(request):
