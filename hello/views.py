@@ -63,7 +63,7 @@ def anan(request):
     texts = []
     for tds in trs:
         td_texts = [td.get_text().replace('　', ' ') for td in tds]
-        texts.append(td_texts[:-1])
+        texts.append([td_texts[0], td_texts[2], td_texts[3], td_texts[4], td_texts[5]])
 
     filepath = f'hello/static/{now}_searched.csv'
     clear_csv(filepath)  # 同名のファイルがあれば初期化。なければ作成。
