@@ -2,9 +2,10 @@ from django.shortcuts import render
 from django.http import HttpResponse
 
 from .models import Greeting
-from .models import AnanLib
+# from .models import AnanLib
 
-# import requests
+from bs4 import BeautifulSoup
+import requests
 # import os
 
 
@@ -26,9 +27,12 @@ def index(request):
 
 
 def anan(request):
-    anan = AnanLib()
-
-    return render(request, 'anan.html', {'anan': anan.text})
+    uri = 'http://faketurn.com/rs/'
+    r = requests.get(uri)
+    soup = BeautifulSoup(r.content, 'html.parser')
+    texts = soup.title.string
+    print(texts)
+    return render(request, 'anan.html', {'texts': texts})
 
 
 def db(request):

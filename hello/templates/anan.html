@@ -7,7 +7,13 @@
 <h2>阿南市立図書館</h2>
 <p>おお、そうか</p>
 
-{{ anan }}
+{{ text }}
+
+<ul>
+{% for text in texts %}
+    <li>{{ text }}</li>
+{% endfor %}
+</ul>
 
 </div>
 {% endblock %}
