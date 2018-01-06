@@ -5,27 +5,20 @@
 <div class="container">
 
 <h2>阿南市立図書館</h2>
-<p>検索結果</p>
+<p>おお、そうか</p>
 
 {{ text }}
 
-<table class="table table-hover">
-    <tr>
-        <th>No</th>
-        <th>種類</th>
-        <th>書名</th>
-        <th>作者</th>
-        <th>出版社</th>
-        <th>発売日</th>
-    </tr>
+<div class="container">
 {% for text in texts %}
-    <tr>
-    {% for word in text %}
-        <td>{{ word }}</td>
-    {% endfor %}
-    </tr>
+    <div class="row">
+        <div class="card">{% for word in text %}
+            <div class="card-block">{{ word }}</div>
+        {% endfor %}
+        </div>
+    </div>
 {% endfor %}
-</table>
+</div>
 
 </div>
 {% endblock %}
