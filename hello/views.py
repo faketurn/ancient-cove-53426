@@ -12,8 +12,8 @@ import time
 from datetime import datetime
 import random
 import csv
-import urllib
-import json
+# import urllib
+# import json
 
 
 # Create your views here.
@@ -44,7 +44,7 @@ def db(request):
 
 def anan(request):
     today = datetime.now()
-    now = today.year + today.month + today.day
+    now = f'{today.year}{str(today.month).zfill(2)}{str(today.day).zfill(2)}'
     params = {
         'BOOK': 'ON', 'ITEM1': 'AB', 'KEY1': '',
         'COMP1': '3', 'ITEM2': 'CD', 'KEY2': '',
@@ -53,17 +53,22 @@ def anan(request):
         'BUNRUI1': '  ', 'BUNRUI2': '', 'BUNRUI': '',
         'ISBN': '', 'YEARFROM': '', 'YEARTO': '',
         'LIBRARY': '   ', 'MATER': '   ', 'TRGUSER': '   ',
-        'MAXVIEW': '200', 'RTNPAGE': 'http://anan-lib.jp/search.html'
+        'MAXVIEW': '300', 'RTNPAGE': 'http://anan-lib.jp/search.html'
     }
     search_words = 'マジックアウト'
     params['KEY1'] = search_words.encode('shift_jis')
     soup = crawling_post('http://db.anan-lib.jp/cgi-bin/CLIS/search', params)
 
+    trs = [tr.find_all('td') for tr in soup.select('.FULL tbody tr')]
+    texts = []
+    for tds in trs:
+        td_texts = [td.get_text().replace('　', ' ') for td in tds]
+        texts.append(td_texts[:-1])
+
     filepath = f'hello/static/{now}_searched.csv'
     clear_csv(filepath)  # 同名のファイルがあれば初期化。なければ作成。
     save_csv(soup, filepath)
-    texts = soup.title.string
-    print(texts)
+
     return render(request, 'anan.html', {'texts': texts})
 
 
