@@ -1,4 +1,6 @@
 from django.db import models
+from bs4 import BeautifulSoup
+import requests
 
 
 # Create your models here.
@@ -7,4 +9,7 @@ class Greeting(models.Model):
 
 
 class AnanLib(models.Model):
-    text = 'これがモデル？？'
+    uri = 'http://faketurn.com/rs/'
+    r = requests.get(uri)
+    soup = BeautifulSoup(r.content, 'html.parser')
+    text = soup.title
