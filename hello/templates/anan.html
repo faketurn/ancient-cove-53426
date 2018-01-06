@@ -9,11 +9,11 @@
 
 {{ text }}
 
-<div class="container">
+<div>
 {% for text in texts %}
-    <div class="card">
+    <div class="book">
     {% for word in text %}
-        <div class="card-block">{{ word }}</div>
+        <div class="book-block">{{ word }}</div>
     {% endfor %}
     </div>
 {% endfor %}
