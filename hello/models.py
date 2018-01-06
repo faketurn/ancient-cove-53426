@@ -11,5 +11,5 @@ class Greeting(models.Model):
 class AnanLib(models.Model):
     uri = 'http://faketurn.com/rs/'
     r = requests.get(uri)
-    soup = BeautifulSoup(r.content, 'html.parser')
+    # soup = BeautifulSoup(r.content, 'html.parser')
     text = '1246'
