@@ -55,7 +55,7 @@ def anan(request):
         'LIBRARY': '   ', 'MATER': '   ', 'TRGUSER': '   ',
         'MAXVIEW': '300', 'RTNPAGE': 'http://anan-lib.jp/search.html'
     }
-    search_words = 'マジックアウト'
+    search_words = 'チャ'
     params['KEY1'] = search_words.encode('shift_jis')
     soup = crawling_post('http://db.anan-lib.jp/cgi-bin/CLIS/search', params)
 
