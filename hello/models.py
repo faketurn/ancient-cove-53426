@@ -12,4 +12,4 @@ class AnanLib(models.Model):
     uri = 'http://faketurn.com/rs/'
     r = requests.get(uri)
     soup = BeautifulSoup(r.content, 'html.parser')
-    text = '1246'
+    text = soup.title
