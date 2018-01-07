@@ -2,19 +2,30 @@
 {% load staticfiles %}
 
 {% block content %}
-<div class="container">
+<div class="container anan">
 
-<h2>阿南市立図書館</h2>
-<p>検索結果:{{ texts|length }}件</p>
+<h1>阿南市立図書3館</h1>
+<form action="" method="POST">
+    <div class="inputs">
+        {% csrf_token %}
+        {{ form }}
+        <input type="submit" value="検索" />
+        <!-- <input type="search" onfocus="_i.classList.add('i_focus');" onblur="_i.classList.remove('i_focus');">
+        <input type="submit" value="検索"> -->
+    </div>
+</form>
+<p class="result">{{ book_datas|length }} 件の検索結果</p>
 
 {{ text }}
 
 <div>
-{% for text in texts %}
+{% for book_data in book_datas %}
     <div class="book">
-    {% for word in text %}
-        <div class="book-block">{{ word }}</div>
-    {% endfor %}
+        <div class="book-block">{{ book_data.num }}</div>
+        <div class="book-block">{{ book_data.title }}</div>
+        <div class="book-block">{{ book_data.author }}</div>
+        <div class="book-block">{{ book_data.publisher }}</div>
+        <div class="book-block">{{ book_data.publish_date }}</div>
     </div>
 {% endfor %}
 </div>

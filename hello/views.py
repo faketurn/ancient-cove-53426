@@ -3,6 +3,7 @@ from django.http import HttpResponse
 
 from .models import Greeting
 # from .models import AnanLib
+from .forms import MyForm
 
 from bs4 import BeautifulSoup
 import requests
@@ -42,7 +43,25 @@ def db(request):
     return render(request, 'db.html', {'greetings': greetings})
 
 
+def form_test(request):
+    if request.method == "POST":
+        form = MyForm(data=request.POST)
+        if form.is_valid():
+            text = form.cleaned_data['text']
+    else:
+        form = MyForm()
+    return render(request, 'form.html', {'form': form, 'text': text})
+
+
 def anan(request):
+    if request.method == "POST":
+        form = MyForm(data=request.POST, auto_id=False)
+        if form.is_valid():
+            text = form.cleaned_data['text']
+    else:
+        form = MyForm(auto_id=False)
+        text = ''
+
     today = datetime.now()
     now = f'{today.year}{str(today.month).zfill(2)}{str(today.day).zfill(2)}'
     params = {
@@ -55,21 +74,28 @@ def anan(request):
         'LIBRARY': '   ', 'MATER': '   ', 'TRGUSER': '   ',
         'MAXVIEW': '300', 'RTNPAGE': 'http://anan-lib.jp/search.html'
     }
-    search_words = 'チャ'
+    search_words = text
     params['KEY1'] = search_words.encode('shift_jis')
     soup = crawling_post('http://db.anan-lib.jp/cgi-bin/CLIS/search', params)
 
     trs = [tr.find_all('td') for tr in soup.select('.FULL tbody tr')]
-    texts = []
+    book_datas = []
     for tds in trs:
-        td_texts = [td.get_text().replace('　', ' ') for td in tds]
-        texts.append([td_texts[0], td_texts[2], td_texts[3], td_texts[4], td_texts[5]])
+        td_book_datas = [td.get_text().replace('　', ' ') for td in tds]
+        book_data = dict(
+            num=td_book_datas[0],
+            title=td_book_datas[2],
+            author=td_book_datas[3],
+            publisher=td_book_datas[4],
+            publish_date=td_book_datas[5]
+        )
+        book_datas.append(book_data)
 
     filepath = f'hello/static/{now}_searched.csv'
     clear_csv(filepath)  # 同名のファイルがあれば初期化。なければ作成。
     save_csv(soup, filepath)
 
-    return render(request, 'anan.html', {'texts': texts})
+    return render(request, 'anan.html', {'form': form, 'book_datas': book_datas})
 
 
 def crawling_post(uri, params={}, min_time=1, max_time=2):
@@ -77,7 +103,7 @@ def crawling_post(uri, params={}, min_time=1, max_time=2):
     #     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; WOW64; rv:56.0) Gecko/20100101 Firefox/56.0',
     #     'Referer': 'http://anan-lib.jp/search.html'
     # }
-    time.sleep(get_random_int(min_time, max_time))
+    # time.sleep(get_random_int(min_time, max_time))
     r = requests.post(uri, data=params)
     # print(r.text, r.encoding)
     if r.status_code == 200:

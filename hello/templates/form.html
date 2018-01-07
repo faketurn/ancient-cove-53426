@@ -1,0 +1,10 @@
+<html>
+  <body>
+    <form action="" method="POST">
+        {% csrf_token %}
+        {{ form }}
+        <input type="submit" value="検索" />
+    </form>
+    <p>{{ text }}</p>
+  </body>
+</html>

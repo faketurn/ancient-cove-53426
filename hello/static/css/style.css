@@ -1,0 +1,51 @@
+.book {
+    padding: 1rem 0;
+    position: relative;
+}
+.book-block {
+    padding: 0 1.5rem 0 2rem;
+}
+.book-block:nth-child(1) {
+    position: absolute;
+    top: 1rem;
+    left: 0;
+    padding-left: 0;
+    color: #999;
+}
+
+.result {
+    color: #888;
+}
+.anan h1 {
+    margin: 1rem 0;
+}
+.anan form {
+    display: flex;
+    width: 60%;
+}
+.anan .inputs {
+    flex-grow: 1;
+    display: flex;
+    margin: 0 0 1rem;
+    padding: .3rem .5rem .3rem 1rem;
+    border: 1px solid #ccc;
+    box-shadow: 1px 1px 2px #ddd;
+}
+
+.anan .inputs:hover,
+.anan .i_focus {
+    box-shadow: 1.5px 1.5px 3px #ddd;
+}
+.anan [type="search"] {
+    flex-grow: 1;
+    border: none;
+    font-size: 1.2rem;
+}
+.anan [type="submit"] {
+    border: none;
+    background-color: white;
+    color: #0056b3;
+}
+.anan [type="submit"]:hover {
+    cursor: pointer;
+}
