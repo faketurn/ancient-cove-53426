@@ -76,7 +76,7 @@ def anan(request):
     }
     search_words = text
     params['KEY1'] = search_words.encode('shift_jis')
-    soup = crawling_post('http://db.anan-lib.jp/cgi-bin/CLIS/search', params)
+    soup = crawling_post('http://db.anan-lib.jp/cgi-bin/CLIS/search', params, 0, 0)
 
     trs = [tr.find_all('td') for tr in soup.select('.FULL tbody tr')]
     book_datas = []
@@ -103,7 +103,7 @@ def crawling_post(uri, params={}, min_time=1, max_time=2):
     #     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; WOW64; rv:56.0) Gecko/20100101 Firefox/56.0',
     #     'Referer': 'http://anan-lib.jp/search.html'
     # }
-    # time.sleep(get_random_int(min_time, max_time))
+    time.sleep(get_random_int(min_time, max_time))
     r = requests.post(uri, data=params)
     # print(r.text, r.encoding)
     if r.status_code == 200:
@@ -114,7 +114,9 @@ def crawling_post(uri, params={}, min_time=1, max_time=2):
 
 def get_random_int(min, max):
     """ところどころでランダムな待ち時間を入れておくと、人間らしくなって安全です"""
-    return random.random() * (max - min + 1) + min
+    if min * max:
+        return random.random() * (max - min + 1) + min
+    return 0
 
 
 def clear_csv(filepath):

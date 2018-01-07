@@ -1,19 +1,28 @@
 .book {
     padding: 1rem 0;
-    position: relative;
+    display: flex;
+}
+.book-num {
+    color: #999;
+    width: 2rem;
+    display: none;
 }
 .book-block {
-    padding: 0 1.5rem 0 2rem;
+    padding: 0 1rem 0 0;
+    flex-grow: 1;
+    color: #666;
 }
-.book-block:nth-child(1) {
-    position: absolute;
-    top: 1rem;
-    left: 0;
-    padding-left: 0;
-    color: #999;
+.book-block div:first-child {
+    color: #000;
+    font-size: 1.3rem;
+}
+.book-library {
+    list-style: none;
+    width: 5rem;
+    padding: 0;
 }
 
-.result {
+.result_count {
     color: #888;
 }
 .anan h1 {
