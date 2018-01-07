@@ -91,7 +91,7 @@ def anan(request):
         )
         book_datas.append(book_data)
 
-    filepath = f'hello/static/{now}_searched.csv'
+    filepath = f'hello/files/{now}_searched.csv'
     clear_csv(filepath)  # 同名のファイルがあれば初期化。なければ作成。
     save_csv(soup, filepath)
 
