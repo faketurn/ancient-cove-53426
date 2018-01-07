@@ -28,12 +28,10 @@
 .anan h1 {
     margin: 1rem 0;
 }
-.anan form {
-    display: flex;
-    width: 60%;
+.anan table td {
+    display: inline;
 }
 .anan .inputs {
-    flex-grow: 1;
     display: flex;
     margin: 0 0 1rem;
     padding: .3rem .5rem .3rem 1rem;
@@ -41,12 +39,18 @@
     box-shadow: 1px 1px 2px #ddd;
 }
 
+.anan form {
+    width: 60%;
+}
+.anan form p {
+    margin: 0;
+    width: 100%;
+}
 .anan .inputs:hover,
 .anan .i_focus {
     box-shadow: 1.5px 1.5px 3px #ddd;
 }
 .anan [type="search"] {
-    flex-grow: 1;
     border: none;
     font-size: 1.2rem;
 }

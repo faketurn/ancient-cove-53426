@@ -8,10 +8,8 @@
 <form action="" method="POST">
     <div class="inputs">
         {% csrf_token %}
-        {{ form }}
+        {{ form.as_p }}
         <input type="submit" value="検索" />
-        <!-- <input type="search" onfocus="_i.classList.add('i_focus');" onblur="_i.classList.remove('i_focus');">
-        <input type="submit" value="検索"> -->
     </div>
 </form>
 <p class="result_count">{{ book_datas|length }} 件の検索結果</p>
