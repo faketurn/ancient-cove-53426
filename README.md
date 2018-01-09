@@ -1,12 +1,50 @@
-# Python: Getting Started
+# Python: 始める方法
 
-A barebones Django app, which can easily be deployed to Heroku.
+HerokuではBarebones Djangoアプリが簡単に利用できます。
 
 This application supports the [Getting Started with Python on Heroku](https://devcenter.heroku.com/articles/getting-started-with-python) article - check it out.
 
-## Running Locally
+## ローカルで実行する
 
-Make sure you have Python [installed properly](http://install.python-guide.org). Also, install the [Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli) and [Postgres](https://devcenter.heroku.com/articles/heroku-postgresql#local-setup).
+Pythonがインストールされているか確認してください。 [installed properly](http://install.python-guide.org) また、[Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli) と [Postgres](https://devcenter.heroku.com/articles/heroku-postgresql#local-setup)をインストールしてください。
+
+## heroku-pythonのコマンド
+
+```sh
+# herokuコマンドを利用するためにログインが必要
+$ heroku login
+
+# サーバーに保存するためのコマンド
+$ git push heroku master
+
+# サーバーを開く（ブラウザが開くコマンド）
+$ heroku open
+
+# Pipfileにアプリの依存関係が記録されています
+# デプロイされると、Herokuはこのファイルを読み込み
+# 適切なPythonの依存関係をインストールします。
+# これをローカルで行うには、Pipenvを使用します。
+
+# --threeオプションで、Python3を明示します。
+$ pipenv --three
+
+# 依存関係をインストールします。
+$ pipenv install
+
+# アプリをローカルで実行するためにvirtualenvを有効にします。
+$ pipenv shell
+
+# Djangoはローカルアセットを使用しているので、collectstaticを実行する必要があります。
+$ pthon manage.py collectstatic
+
+# Heroku CLIのアプリをローカルで起動します。
+$ heroku local web -f Procfile.windows
+# Unixの場合は
+$ heroku local web
+
+(http：// localhost：5000)[http：// localhost：5000]を開いて確認できます。
+
+```
 
 ```sh
 $ git clone git@github.com:heroku/python-getting-started.git
