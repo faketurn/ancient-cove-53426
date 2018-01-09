@@ -22,9 +22,10 @@
 }
 .book-library li {
     width: 4rem;
-    background-color: skyblue;
+    background-color: rgba(100, 255, 50, .5);
     color: white;
     font-size: .8rem;
+    margin: .2rem 0;
     padding: .2rem 0;
     border-radius: 4px;
     text-align: center;
@@ -35,6 +36,11 @@
 }
 .anan h1 {
     margin: 1rem 0;
+}
+.anan h1 i {
+    font-size: .8rem;
+    font-style: normal;
+    padding-left: .5rem;
 }
 .anan table td {
     display: inline;
