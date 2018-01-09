@@ -15,6 +15,7 @@ import random
 import csv
 # import urllib
 # import json
+import os
 
 
 # Create your views here.
@@ -91,7 +92,10 @@ def anan(request):
         )
         book_datas.append(book_data)
 
-    filepath = f'hello/files/{now}_searched.csv'
+    dir_path = os.path.join('hello', 'files', now)
+    if not os.path.exists(dir_path):
+        os.makedirs(dir_path)
+    filepath = os.path.join(dir_path, f'keys_{text}.csv')
     clear_csv(filepath)  # 同名のファイルがあれば初期化。なければ作成。
     save_csv(soup, filepath)
 
