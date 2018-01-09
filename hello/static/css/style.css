@@ -1,6 +1,7 @@
 .book {
     padding: 1rem 0;
     display: flex;
+    justify-content: space-between;
 }
 .book-num {
     color: #999;
@@ -9,7 +10,6 @@
 }
 .book-block {
     padding: 0 1rem 0 0;
-    flex-grow: 1;
     color: #666;
 }
 .book-block div:first-child {
@@ -18,8 +18,10 @@
 }
 .book-library {
     list-style: none;
-    width: 5rem;
     padding: 0;
+}
+.book-library li {
+    width: 4rem;
 }
 
 .result_count {
@@ -54,6 +56,7 @@
     border: none;
     font-size: 1.2rem;
     width: 100%;
+    outline: none;
 }
 .anan [type="submit"] {
     border: none;
